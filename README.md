@@ -1,7 +1,7 @@
 # Dana-Schoen-tb2-exam
 This ReadMe file will give a short summary of my application and instructions on how to execute the code! 
 
-## Free Your Mind 2.0 - Project Discription:
+## Free Your Mind 2.0 - Project Description:
 "Free Your Mind" is a comprehensive mental wellness application aimed at improving users' mental health and overall well-being.
 The app offers a range of features to support users on their wellness journey. Through journaling, users can reflect on their
 thoughts and emotions, fostering self-awareness and introspection. Affirmations are available to boost confidence and self-esteem, providing users with positive reinforcement.
