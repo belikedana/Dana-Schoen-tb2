@@ -207,7 +207,7 @@ def homepage():
     global corner_label
 
     # add a background to your page
-    add_image(root, "images/Mediatation3.png", screen_width, screen_height)
+    add_image(root, "images/Mediatations.png", screen_width, screen_height)
 
     # All the homepage buttons and labels
 
