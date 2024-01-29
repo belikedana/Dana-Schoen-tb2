@@ -1312,18 +1312,19 @@ def meditations_page():
 # watch out that there is no space after the comma in the csv file
 def enter_user_data():
     # do a user id check
+    user_data = pd.read_csv("data/user_data.csv")
     # read the username column
     user_ids = list(pd.read_csv("data/user_data.csv").username)
 
     if username.get() in user_ids:
         tk.messagebox.showwarning("Warning", "This username already exists!")
     else:
-        # create a dictionary with info from the new user page
-        user_data = {"name_of_user": name.get(),
-                     "username": username.get()}
+        # Create a dictionary with new user data
+        new_user = {"name_of_user": name.get(), "username": username.get()}
 
-        user_data = pd.DataFrame([user_data])
-        user_data.to_csv("data/user_data.csv", index=False, mode='a', header=False)
+        # Append new user to DataFrame and save to CSV
+        user_data = user_data.append(new_user, ignore_index=True)
+        user_data.to_csv("data/user_data.csv", index=False)
 
         # create a thankyou label
         thankyou_label = tk.Label(root, text="Your info has been submitted")
