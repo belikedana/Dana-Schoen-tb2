@@ -158,7 +158,7 @@ def homepage():
     global corner_label
 
     # Add a background image to my page
-    add_image(root, "images/Meditations.png", screen_width, screen_height)
+    add_image(root, "images/Mediatations.png", screen_width, screen_height)
 
     # The label where the feel good statements appear in
     corner_label = tk.Label(root, text="",
@@ -866,7 +866,7 @@ def play_1():
 
 
 def play_2():
-    pg.mixer.music.load("meditationmusic/StressRelief.mp3")
+    pg.mixer.music.load("meditationmusic/Stressrelief.mp3")
     pg.mixer.music.play()
 
 
