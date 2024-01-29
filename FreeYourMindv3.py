@@ -488,7 +488,7 @@ def display_affirmations():
         i.destroy()
 
     # add a background to your page
-    add_image(root, "images/Aura8.jpeg", screen_width, screen_height)
+    add_image(root, "images/Aura.jpeg", screen_width, screen_height)
 
     # Start Affirmations button
     start_button = Button(root, text='Generate Affirmations',
