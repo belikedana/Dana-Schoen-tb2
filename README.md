@@ -25,12 +25,7 @@ Ensure that these libraries are installed using pip or any other package manager
 
 
 ```bash
-pip install tkinter
-pip install tkmacosx
-pip install pillow
-pip install pyagme
-pip install gtts
-pip install pandas
+pip install tkmacosx pillow pygame gtts pandas
 ```
 After installing the required libraries in a virtual environment, users should proceed to clone the entire repository onto 
 their local machine. The repository encompasses several crucial components, including:
