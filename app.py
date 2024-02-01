@@ -1,5 +1,3 @@
-# TODO: clean up code & advance the code
-
 # Need to import all these libraries
 import tkinter as tk
 from tkinter.filedialog import askdirectory
@@ -212,12 +210,6 @@ def homepage():
 # Journal Entry Section
 # Here you can find all the definitions, variables, lists that are needed to create the journal entry page.
 
-# Define variables at the module level
-recom_label = tk.Label()
-entry = tk.Entry()
-message_label = tk.Label()
-
-
 # Definition to safe the entry made in the text file and safe it as journal.txt
 # Reference: https://tkdocs.com/tutorial/text.html#basics
 def save_entry():
@@ -240,8 +232,7 @@ def save_entry():
                              relief='groove',
                              bg='lightblue',
                              fg='purple',
-                             border=5
-                             )
+                             border=5)
         message_label.place(x=590, y=730)
         # Message disappears after a few seconds (in milliseconds)
         message_label.after(4000, message_label.destroy)
@@ -249,7 +240,7 @@ def save_entry():
 
 # Controlling the visibility of the inspiration label
 # On a click the user can see the label and with another click can make the label disappear
-# Creating a visibility flag
+# Creating a visibility flag; that changes when button clicked and label becomes visible or not
 label_visible = False
 
 
@@ -338,9 +329,6 @@ def journal_entry():
 # Display Affirmations Section.
 # Here you can find all the definitions, variables, lists that are needed to create the Affirmations Page.
 
-# Define all the variables on a module level
-start_button = Button()
-affirmation_label = tk.Label()
 # Variable to control the affirmations loop
 continue_loop = True
 
@@ -450,13 +438,6 @@ def display_affirmations():
 # Recommendations Section.
 # Here you can find all the definitions, variables, lists that are needed to create the Recommendations Page.
 
-# Declare all variables on a module level
-current_label = tk.Label()
-label_button1 = Button()
-label_button2 = Button()
-label_button3 = Button()
-emergency_label = tk.Label()
-
 
 # Definition to show the selected recommendations in the same label that updates its text
 def display_theme(theme_text):
@@ -554,11 +535,6 @@ def display_recommendations():
 # Quotes Section.
 # Here you can find all the definitions, variables, lists that are needed to create the Quotes Page.
 
-# Declare variables on a module level
-stop_button = Button()
-slideshow_button = Button()
-slideshow_label = tk.Label()
-
 # Variable to track the current index of the slideshow
 current_index = 0
 
@@ -574,6 +550,9 @@ def update_slideshow():
     image = Image.open(image_files[current_index])
     image = image.resize((600, 400), Image.LANCZOS)
     photo = ImageTk.PhotoImage(image)
+
+    # Shuffle the image files for the next iteration
+    random.shuffle(image_files)
 
     # Update the label, where the images are displayed in, with the new image
     slideshow_label.config(image=photo)
@@ -650,10 +629,6 @@ def display_quotes():
 # Music Page Section.
 # Here you can find all the definitions, variables, lists that are needed to create the Music Page.
 
-# Declare all variables on a module level
-play_button = Button()
-pause_button = Button()
-play_list = tk.Listbox()
 # Store the song name as a variable
 song_name = tk.StringVar()
 
@@ -837,42 +812,67 @@ def music_page():
 # Meditations Page.
 # Here you can find all the definitions, variables, lists that are needed to create the Meditations Page.
 
+# Define a flag to track whether a meditation is currently playing
+meditation_playing = False
+
+
 # Definitions to pause, unpause and stop the meditations
 def pause_meditation():
-    pg.mixer.music.pause()
-
-    # Configure the pause button to the unpause button
-    pause_button1.configure(text='UNPAUSE',
-                            command=unpause_meditation)
+    # If meditation is playing, then pause it and reconfigure the button
+    if meditation_playing:
+        pg.mixer.music.pause()
+        # Configure the pause button to the unpause button
+        pause_button1.configure(text='UNPAUSE',
+                                command=unpause_meditation)
+    else:
+        # If not, show a warning
+        messagebox.showwarning("Warning!", "No Meditation is playing!")
 
 
 def unpause_meditation():
-    pg.mixer.music.unpause()
-
-    # Configure the unpause button to the pause button
-    pause_button1.configure(text='PAUSE',
-                            command=pause_meditation)
+    # If meditation is playing, then pause it and reconfigure the button
+    if meditation_playing:
+        pg.mixer.music.unpause()
+        # Configure the unpause button to the pause button
+        pause_button1.configure(text='PAUSE',
+                                command=pause_meditation)
+    else:
+        # If not, show a warning
+        messagebox.showwarning("Warning!", "No Meditation is playing!")
 
 
 def stop_meditation():
-    pg.mixer.music.stop()
+    # If meditation is playing, then pause it and reconfigure the button
+    global meditation_playing
+    if meditation_playing:
+        pg.mixer.music.stop()
+        meditation_playing = False
+    else:
+        # If not, show a warning
+        messagebox.showwarning("Warning!", "No Meditation is playing!")
 
 
 # The Definitions to play the Meditations
 # Meditations from: https://www.helpguide.org/home-pages/audio-meditations.htm
 def play_1():
+    global meditation_playing
     pg.mixer.music.load("meditationmusic/Sleep.mp3")
     pg.mixer.music.play()
+    meditation_playing = True
 
 
 def play_2():
+    global meditation_playing
     pg.mixer.music.load("meditationmusic/Stressrelief.mp3")
     pg.mixer.music.play()
+    meditation_playing = True
 
 
 def play_3():
+    global meditation_playing
     pg.mixer.music.load("meditationmusic/Gratitude.mp3")
     pg.mixer.music.play()
+    meditation_playing = True
 
 
 # The Definition that creates the Meditation Page
