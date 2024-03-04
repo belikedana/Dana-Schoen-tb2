@@ -535,6 +535,44 @@ def display_recommendations():
 # Quotes Section.
 # Here you can find all the definitions, variables, lists that are needed to create the Quotes Page.
 
+# Definition that creates the Quotes page
+def display_quotes():
+    # Define all the variables as global
+    global stop_button, start_button, slideshow_label
+    # Clear all the widgets that were created before
+    clear_widgets(root)
+
+    # Add a background image to your page
+    add_image(root, "images/Forest2.jpeg", screen_width, screen_height)
+
+    # Create a label to display the images in
+    slideshow_label = tk.Label(root, border=8, text='The Quotes-Slideshow will appear here, once you press start:',
+                               font='arial 17 ', bg='green', fg='white', relief='groove')
+    slideshow_label.place(x=400, y=200)
+
+    # Create start and stop buttons
+    start_button = Button(root, text='Start',
+                          **customstyle_quotes,
+                          command=start_slideshow)
+    start_button.place(x=550, y=700)
+
+    stop_button = Button(root, text='Stop',
+                         **customstyle_quotes,
+                         command=stop_slideshow)
+    stop_button.place(x=720, y=700)
+
+    # Call the definition to create the standard menu buttons
+    menu_buttons()
+    # Reconfigure the exit buttons background color to match the vibe of each page
+    exit_button.configure(background='darkgreen')
+    # The button of the page we are on appears with a white foreground to indicate on which page the user is
+    quotes_button.configure(foreground='white')
+
+    # When user logged in and therefore the flag is being true, the extra menu buttons are shown
+    if flag.get() == 'true':
+        extra_menu_buttons()
+
+
 # Variable to track the current index of the slideshow
 current_index = 0
 
@@ -586,44 +624,6 @@ def stop_slideshow():
     if slideshow_id is not None:
         root.after_cancel(slideshow_id)
         slideshow_id = None
-
-
-# Definition that creates the Quotes page
-def display_quotes():
-    # Define all the variables as global
-    global stop_button, start_button, slideshow_label
-    # Clear all the widgets that were created before
-    clear_widgets(root)
-
-    # Add a background image to your page
-    add_image(root, "images/Forest2.jpeg", screen_width, screen_height)
-
-    # Create a label to display the images in
-    slideshow_label = tk.Label(root, border=8, text='The Quotes-Slideshow will appear here, once you press start:',
-                               font='arial 17 ', bg='green', fg='white', relief='groove')
-    slideshow_label.place(x=400, y=200)
-
-    # Create start and stop buttons
-    start_button = Button(root, text='Start',
-                          **customstyle_quotes,
-                          command=start_slideshow)
-    start_button.place(x=550, y=700)
-
-    stop_button = Button(root, text='Stop',
-                         **customstyle_quotes,
-                         command=stop_slideshow)
-    stop_button.place(x=720, y=700)
-
-    # Call the definition to create the standard menu buttons
-    menu_buttons()
-    # Reconfigure the exit buttons background color to match the vibe of each page
-    exit_button.configure(background='darkgreen')
-    # The button of the page we are on appears with a white foreground to indicate on which page the user is
-    quotes_button.configure(foreground='white')
-
-    # When user logged in and therefore the flag is being true, the extra menu buttons are shown
-    if flag.get() == 'true':
-        extra_menu_buttons()
 
 
 # Music Page Section.
