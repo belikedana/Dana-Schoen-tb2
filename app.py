@@ -127,29 +127,6 @@ def extra_menu_buttons():
 corner_label = tk.Label()
 
 
-# This function randomizes the statements from the list and places them in one of the four corners
-# Reference: https://stackoverflow.com/questions/64918341/python-tkinter-how-to-adjust-the-x-y-default-0-0-coordinates
-def generate_feel_good_statement():
-    global corner_label
-    # Randomly select a statement from the list
-    statement = random.choice(feel_good_statements)
-    # Randomly position the label in one of the corners
-    x = random.choice([30, root.winfo_width() - 300])
-    y = random.choice([30, root.winfo_height() - 50])
-    corner_label.place(x=x, y=y)
-    # Display the statement in the chosen corner
-    corner_label.config(text=statement)
-    # forgets the statements after 4000 milliseconds
-    root.after(4000, hide_feel_good_statement)
-
-
-# Definition that the statements disappear after 4 seconds
-def hide_feel_good_statement():
-    # If a corner label still exists then forget it after 4 seconds
-    if corner_label:
-        corner_label.place_forget()
-
-
 # Definition that creates the homepage
 def homepage():
     # Declare variable global
@@ -205,6 +182,29 @@ def homepage():
                              width=270,
                              command=journal_entry)
     continue_button.place(x=555, y=670)
+
+
+# This function randomizes the statements from the list and places them in one of the four corners
+# Reference: https://stackoverflow.com/questions/64918341/python-tkinter-how-to-adjust-the-x-y-default-0-0-coordinates
+def generate_feel_good_statement():
+    global corner_label
+    # Randomly select a statement from the list
+    statement = random.choice(feel_good_statements)
+    # Randomly position the label in one of the corners
+    x = random.choice([30, root.winfo_width() - 300])
+    y = random.choice([30, root.winfo_height() - 50])
+    corner_label.place(x=x, y=y)
+    # Display the statement in the chosen corner
+    corner_label.config(text=statement)
+    # forgets the statements after 4000 milliseconds
+    root.after(4000, hide_feel_good_statement)
+
+
+# Definition that the statements disappear after 4 seconds
+def hide_feel_good_statement():
+    # If a corner label still exists then forget it after 4 seconds
+    if corner_label:
+        corner_label.place_forget()
 
 
 # Journal Entry Section
